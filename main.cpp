@@ -3,12 +3,9 @@ using namespace std;
 int main(){
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
+    long long lines = 0;
     string line;
-    bool first = true;
-    while (getline(cin, line)) {
-        if (!first) cout << '\n';
-        cout << line;
-        first = false;
-    }
+    while (getline(cin, line)) ++lines;
+    cout << lines << "\n";
     return 0;
 }
