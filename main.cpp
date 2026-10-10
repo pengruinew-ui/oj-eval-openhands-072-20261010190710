@@ -47,6 +47,20 @@ int main(){
                     adj[i].push_back({j, gears[i].orr, gears[j].orr});
                     adj[j].push_back({i, gears[j].orr, gears[i].orr});
                 }
+                // inner-outer (i inner, j outer)
+                double sum_io = gears[i].ir + gears[j].orr;
+                if (dist < sum_io - EPS) { overlap = true; }
+                else if (fabs(dist - sum_io) <= EPS) {
+                    adj[i].push_back({j, gears[i].ir, gears[j].orr});
+                    adj[j].push_back({i, gears[j].orr, gears[i].ir});
+                }
+                // outer-inner (i outer, j inner)
+                double sum_oi = gears[i].orr + gears[j].ir;
+                if (dist < sum_oi - EPS) { overlap = true; }
+                else if (fabs(dist - sum_oi) <= EPS) {
+                    adj[i].push_back({j, gears[i].orr, gears[j].ir});
+                    adj[j].push_back({i, gears[j].ir, gears[i].orr});
+                }
             }
         }
         cout << "Simulation #" << sim << "\n";
